@@ -42,11 +42,18 @@ Vagrant.configure(2) do |config|
 
 
  config.vm.provision "shell", inline: <<-SHELL
+    # Test if puppet is installed
     if ! $(which puppet); then
+      # Configure puppetlabs apt repository
+      wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+      sudo dpkg -i puppetlabs-release-trusty.deb
+
+      # Install puppet
       sudo apt-get update
-      sudo apt-get install -y puppet
+      sudo apt-get install -y puppet=3.7.4-1puppetlabs1
     fi
   SHELL
+
   config.vm.provision "puppet" do |puppet|
     puppet.module_path = "puppet/modules"
     puppet.manifests_path = "puppet/vagrant-manifests"

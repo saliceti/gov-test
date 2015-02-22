@@ -58,3 +58,7 @@ target/
 
 # Submodules
 puppet/modules/nginx
+puppet/modules/apt
+puppet/modules/concat
+puppet/modules/stdlib
+
