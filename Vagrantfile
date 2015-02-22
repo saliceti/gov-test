@@ -40,19 +40,21 @@ Vagrant.configure(2) do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  config.vm.define "nginx" do |nginx|
-    nginx.vm.provision "shell", inline: <<-SHELL
-      # Test if puppet is installed
-      if ! $(which puppet); then
-        # Configure puppetlabs apt repository
-        wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
-        sudo dpkg -i puppetlabs-release-trusty.deb
+  # Install puppet on every host
+  config.vm.provision "shell", inline: <<-SHELL
+    # Test if puppet is installed
+    if ! $(dpkg -s puppet > /dev/null); then
+      # Configure puppetlabs apt repository
+      wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+      sudo dpkg -i puppetlabs-release-trusty.deb
 
-        # Install puppet
-        sudo apt-get update
-        sudo apt-get install -y puppet=3.7.4-1puppetlabs1
-      fi
-    SHELL
+      # Install puppet
+      sudo apt-get update
+      sudo apt-get install -y puppet=3.7.4-1puppetlabs1
+    fi
+  SHELL
+
+  config.vm.define "nginx" do |nginx|
 
     nginx.vm.provision "puppet" do |puppet|
       puppet.module_path = "puppet/modules"

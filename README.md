@@ -14,4 +14,4 @@
 
 * The admin sudoers configuration is the default one. I have specified the requested admin configuration anyway for the demo.
 
-* There are a few warnings due to the puppet modules used
+* There are a few warnings due to the puppet modules used, and "stdin: is not a tty" because of Vagrant
