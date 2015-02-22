@@ -15,9 +15,9 @@
 
 * To download the puppet modules, librarian-puppet would be a better choice than git submodule, but this would add a dependency that is probably unnecessary here.
 
-* The requested admin sudoers configuration is the default one. I have specified it anyway for the demo.
+* The admin sudoers configuration is the default Ubuntu one, and the module keeps it. I have specified the requested configuration anyway for the demo.
 
-* There are a few warnings that can be ignored, due to know issues in the included puppet modules and Vagrant
+* There are a few warnings that can be ignored, due to known issues in the included puppet modules and Vagrant
 
 * Nginx runs on `10.0.0.2:80`
 * The application runs on `10.0.0.3:8000` and `10.0.0.4:8000`
