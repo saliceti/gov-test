@@ -15,3 +15,6 @@
 * The admin sudoers configuration is the default one. I have specified the requested admin configuration anyway for the demo.
 
 * There are a few warnings due to the puppet modules used, and "stdin: is not a tty" because of Vagrant
+
+* Nginx runs on 10.0.0.2:80
+* The application runs on 10.0.0.3:8000 and 10.0.0.4:8000

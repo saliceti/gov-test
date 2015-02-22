@@ -2,8 +2,8 @@ nginx::nginx_upstreams:
   'be.test.gov':
     ensure: present
     members:
-      - localhost:3000
-      - localhost:3002
+      - 10.0.0.3:8000
+      - 10.0.0.4:8000
 nginx::nginx_vhosts:
   'be.test.gov':
     proxy: 'http://be.test.gov'
