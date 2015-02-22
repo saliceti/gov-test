@@ -10,6 +10,6 @@ nginx::nginx_vhosts:
 sudo::configs:
     'vagrant':
         'content'   : "%vagrant ALL=(ALL) NOPASSWD: ALL"
-    'admin':
-        'content'   : "%admin ALL=(ALL) ALL"
+    'admins':
+        'content'   : "%admins ALL=(ALL) ALL"
 gunicorn_port: 8000
