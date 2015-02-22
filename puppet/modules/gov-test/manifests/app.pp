@@ -13,19 +13,19 @@ class gov-test::app {
     }
 
     python::virtualenv{ '/opt/hello_world':
-        owner               => vagrant,
-        group             => vagrant,
-        requirements    => '/opt/hello_world_requirements.txt',
-        require           => File['/opt/hello_world_requirements.txt'],
+        owner          => vagrant,
+        group          => vagrant,
+        requirements   => '/opt/hello_world_requirements.txt',
+        require        => File['/opt/hello_world_requirements.txt'],
     }
 
-  $gunicorn_port = hiera('gunicorn_port')
+    $gunicorn_port = hiera('gunicorn_port')
 
     file { '/etc/init/hello_world.conf':
         ensure  => present,
         content => template('gov-test/hello_world.conf.erb'),
-    require => Python::Virtualenv['/opt/hello_world'],
-    notify  => Service['hello_world'],
+        require => Python::Virtualenv['/opt/hello_world'],
+        notify  => Service['hello_world'],
     }
 
     service { 'hello_world':
