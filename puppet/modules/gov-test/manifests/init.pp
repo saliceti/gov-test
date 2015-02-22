@@ -6,14 +6,4 @@ class gov-test {
 
 	class { 'nginx': }
 
-	nginx::resource::vhost { 'test.gov':
-		proxy	=> 'http://be.test.gov'
-	}
-
-	nginx::resource::upstream { 'be.test.gov':
-		members => [
-			'localhost:3000',
-			'localhost:3001',
-		],
-	}
 }

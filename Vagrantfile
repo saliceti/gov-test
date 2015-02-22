@@ -58,6 +58,10 @@ Vagrant.configure(2) do |config|
     puppet.module_path = "puppet/modules"
     puppet.manifests_path = "puppet/vagrant-manifests"
     puppet.manifest_file = "default.pp"
+    puppet.hiera_config_path = "puppet/hiera.yaml"
   end
+
+  config.vm.provision "shell",
+    inline: "/bin/nc -w 1 localhost 80 > /dev/null || echo Erro: Nginx was not started successfully!"
 
 end
