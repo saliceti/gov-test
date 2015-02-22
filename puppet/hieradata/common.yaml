@@ -7,3 +7,9 @@ nginx::nginx_upstreams:
 nginx::nginx_vhosts:
   'be.test.gov':
     proxy: 'http://be.test.gov'
+sudo::configs:
+    'vagrant':
+        'content'   : "%vagrant ALL=(ALL) NOPASSWD: ALL"
+    'admin':
+        'content'   : "%admin ALL=(ALL) ALL"
+

@@ -6,4 +6,5 @@ class gov-test {
 
 	class { 'nginx': }
 
+	include sudo
 }

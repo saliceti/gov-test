@@ -61,4 +61,5 @@ puppet/modules/nginx
 puppet/modules/apt
 puppet/modules/concat
 puppet/modules/stdlib
+puppet/modules/sudo
 
