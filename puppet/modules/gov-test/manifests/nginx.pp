@@ -2,10 +2,10 @@
 #
 #
 class gov-test::nginx {
-	notify{"i'm in gov-test puppet":}
+    notify{"i'm in gov-test puppet":}
 
-	include ::nginx
+    include ::nginx
 
-	include sudo
+    include sudo
 
 }

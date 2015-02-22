@@ -1,0 +1,2 @@
+start on runlevel [345]
+exec /opt/hello_world/bin/gunicorn --bind 0.0.0.0:<%= @gunicorn_port %> --pythonpath /vagrant/hello_world hello_world:app
