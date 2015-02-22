@@ -13,3 +13,6 @@
 [submodule "puppet/modules/sudo"]
 	path = puppet/modules/sudo
 	url = https://github.com/saz/puppet-sudo.git
+[submodule "puppet/modules/python"]
+	path = puppet/modules/python
+	url = https://github.com/stankevich/puppet-python.git

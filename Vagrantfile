@@ -40,28 +40,29 @@ Vagrant.configure(2) do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
+  config.vm.define "nginx" do |nginx|
+    nginx.vm.provision "shell", inline: <<-SHELL
+      # Test if puppet is installed
+      if ! $(which puppet); then
+        # Configure puppetlabs apt repository
+        wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+        sudo dpkg -i puppetlabs-release-trusty.deb
 
- config.vm.provision "shell", inline: <<-SHELL
-    # Test if puppet is installed
-    if ! $(which puppet); then
-      # Configure puppetlabs apt repository
-      wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
-      sudo dpkg -i puppetlabs-release-trusty.deb
+        # Install puppet
+        sudo apt-get update
+        sudo apt-get install -y puppet=3.7.4-1puppetlabs1
+      fi
+    SHELL
 
-      # Install puppet
-      sudo apt-get update
-      sudo apt-get install -y puppet=3.7.4-1puppetlabs1
-    fi
-  SHELL
+    nginx.vm.provision "puppet" do |puppet|
+      puppet.module_path = "puppet/modules"
+      puppet.manifests_path = "puppet/vagrant-manifests"
+      puppet.hiera_config_path = "puppet/hiera.yaml"
+      puppet.manifest_file = "nginx.pp"
+    end
 
-  config.vm.provision "puppet" do |puppet|
-    puppet.module_path = "puppet/modules"
-    puppet.manifests_path = "puppet/vagrant-manifests"
-    puppet.manifest_file = "default.pp"
-    puppet.hiera_config_path = "puppet/hiera.yaml"
+    nginx.vm.provision "shell",
+      inline: "/bin/nc -w 1 localhost 80 > /dev/null || echo Erro: Nginx was not started successfully!"
+
   end
-
-  config.vm.provision "shell",
-    inline: "/bin/nc -w 1 localhost 80 > /dev/null || echo Erro: Nginx was not started successfully!"
-
 end
