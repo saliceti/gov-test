@@ -57,4 +57,4 @@ target/
 .vagrant
 
 # Submodules
-puppet/modules/puppet-nginx
+puppet/modules/nginx
